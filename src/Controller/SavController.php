@@ -2,27 +2,27 @@
 
 namespace App\Controller;
 
-use App\Form\ContactType;
+use App\Form\SavType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use \Mailjet\Resources;
 
-class ContactController extends AbstractController
+class SavController extends AbstractController
 {
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/sav", name="sav")
      */
     public function index(Request $request): Response
     {
 
-        $form = $this->createForm(ContactType::class);
+        $form = $this->createForm(SavType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()):
-
-            $contactFormData = $form->getData();
+            var_dump($_POST);
+            $savFormData = $form->getData();
 
             $api_key = '55618957ac33d2032db11b0560c2baba';
             $api_key_private = '8b78bca18a537d19d04131be64b2c309';
@@ -32,8 +32,8 @@ class ContactController extends AbstractController
                 'Messages' => [
                     [
                         'From' => [
-                            'Email' => $contactFormData['Email'],
-                            'Name' => $contactFormData['Nom'],
+                            'Email' => $savFormData['Email'],
+                            'Commande' => $savFormData['Commande'],
                         ],
                         'To' => [
                             [
@@ -42,19 +42,19 @@ class ContactController extends AbstractController
                             ]
                         ],
                         'Subject' => "Greetings from Mailjet.",
-                        'TextPart' => "My first Mailjet email",
-                        'HTMLPart' => $contactFormData['Message'],
+                        'TextPart' => $savFormData['Motif'],
+                        'HTMLPart' => $savFormData['Message'],
                         'CustomID' => "AppGettingStartedTest"
                     ]
                 ]
             ];
             $response = $mj->post(Resources::$Email, ['body' => $body]);
             $response->success() && var_dump($response->getData());
-            return $this->redirectToRoute('contact');
+            return $this->redirectToRoute('sav');
 
         endif;
 
-        return $this->render('contact/index.html.twig', [
+        return $this->render('sav/index.html.twig', [
             'form' => $form->createView(),
         ]);
     }
