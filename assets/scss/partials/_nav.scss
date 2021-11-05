@@ -1,0 +1,29 @@
+nav {
+    .nav {
+        background-color: $success;
+        & button {
+            color: $light;
+            font-weight: 600;
+            min-width: 70px;
+            max-width: 120px;
+            &:hover {
+                transform: scale(1.05);
+                color: $light;
+                opacity: 0.9;
+            }
+            &:active {
+                color: $danger;
+            }
+        }
+    }
+    .fa-bars {
+        color: $primary;
+        font-size: 2.8rem;
+    }
+    .nav-cont {
+        background-color: $success;
+        & .navbar-toggler {
+            background-color: $light;
+        }
+    }
+}

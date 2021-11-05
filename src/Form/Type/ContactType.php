@@ -25,7 +25,7 @@ class ContactType extends AbstractType
         ->add('Email', EmailType::class)
         ->add('Message', TextareaType::class,['attr' => ['rows' => 6 ]])
         ->add('Civilite',ChoiceType::class,['choices' => ['Homme' => 'Homme','Femme' => 'Femme',],'expanded' => true])
-        ->add('save', SubmitType::class)
+        ->add('Envoyer', SubmitType::class)
         ;
     }
 }

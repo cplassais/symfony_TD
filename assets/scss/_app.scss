@@ -1,0 +1,93 @@
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+}
+body {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    font-family: $texte;
+    background-color: $success;
+}
+header {
+    .header-left {
+        filter: invert($filterImg);
+        @media screen and (max-width: 770px) {
+            width: 50%;
+            height: 50%;
+            margin: 0 auto;
+        }
+    }
+    .header-middle {
+        font-size: 2.2rem;
+        input {
+            background-color: $success;
+        }
+        button {
+            box-shadow: 0 0 0 0.2rem rgba(134, 184, 64, 0.25);
+            &:hover {
+                color: $light;
+                font-weight: 500;
+            }
+            input {
+                border-color: $secondary;
+                box-shadow: 0 0 0 0.2rem rgba(134, 184, 64, 0.25);
+            }
+        }
+        .fa-search {
+            font-size: 2.2rem;
+        }
+    }
+    .header-right {
+        color: $light;
+        button {
+            font-size: 1.9rem;
+            color: $light;
+            background-color: $secondary;
+            border: 1px solid $light;
+            &:hover {
+                color: $light;
+                font-size: 2rem;
+            }
+            &:focus {
+                color: $light;
+                background-color: $secondary;
+                border: none;
+                border-bottom: 10px solid $secondary;
+                box-shadow: none;
+                opacity: 1;
+            }
+        }
+        //supprime triangle dropdown
+        .dropdown-toggle::after {
+            display: none;
+        }
+        .fa-shopping-cart {
+            font-size: 2.6rem;
+        }
+        .fa-user-circle {
+            font-size: 2.8rem;
+        }
+        ul {
+            margin: 0;
+            list-style: none;
+            white-space: nowrap;
+            border: 3px solid $secondary;
+            background-color: $secondary;
+            & button {
+                border: none;
+            }
+        }
+    }
+}
+
+footer .form-select {
+    background-color: $success;
+    color: $dark;
+}

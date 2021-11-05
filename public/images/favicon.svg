@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="favicon.svg"
+   inkscape:export-filename="C:\Users\HB\Desktop\business_case_projet\public\img\favicon.png"
+   inkscape:export-xdpi="12.356956"
+   inkscape:export-ydpi="12.356956"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:object-paths="false"
+     inkscape:zoom="0.69753788"
+     inkscape:cx="360.5539"
+     inkscape:cy="561.25984"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient954"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#86ff91;stop-opacity:1;"
+         offset="0"
+         id="stop952" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient7387"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#86b840;stop-opacity:0.64705884;"
+         offset="0"
+         id="stop7385" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3252"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop3250" />
+    </linearGradient>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path2149" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path2146" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;fill-opacity:1;stroke:#86b840;stroke-width:15;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path39"
+       sodipodi:type="arc"
+       sodipodi:cx="85.119614"
+       sodipodi:cy="95.176216"
+       sodipodi:rx="32.265747"
+       sodipodi:ry="55.753727"
+       sodipodi:start="0.43814003"
+       sodipodi:end="5.2277462"
+       sodipodi:arc-type="arc"
+       sodipodi:open="true"
+       d="M 114.33761,118.83006 A 32.265747,55.753727 0 0 1 83.032019,150.81313 32.265747,55.753727 0 0 1 54.378595,112.11265 32.265747,55.753727 0 0 1 64.779889,51.895399 32.265747,55.753727 0 0 1 101.02165,46.663966"
+       inkscape:export-filename="C:\Users\HB\Desktop\business_case_projet\public\img\favicon1.png"
+       inkscape:export-xdpi="10.89"
+       inkscape:export-ydpi="10.89" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#fbb840;stroke-width:15.0543;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1837"
+       sodipodi:type="arc"
+       sodipodi:cx="-124.01638"
+       sodipodi:cy="-84.475014"
+       sodipodi:rx="34.804916"
+       sodipodi:ry="38.263138"
+       sodipodi:start="1.2421604"
+       sodipodi:end="5.2277498"
+       sodipodi:arc-type="arc"
+       transform="matrix(-0.99695438,0.07798695,-0.12498026,-0.99215923,0,0)"
+       inkscape:transform-center-x="10.851961"
+       inkscape:transform-center-y="-9.6668957"
+       sodipodi:open="true"
+       d="m -112.78302,-48.259586 a 34.804916,38.263138 0 0 1 -40.51869,-15.538349 34.804916,38.263138 0 0 1 4.00065,-46.971495 34.804916,38.263138 0 0 1 42.43824,-6.99891"
+       inkscape:export-filename="C:\Users\HB\Desktop\business_case_projet\public\img\favicon1.png"
+       inkscape:export-xdpi="10.89"
+       inkscape:export-ydpi="10.89" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#fbb840;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path2064"
+       sodipodi:type="arc"
+       sodipodi:cx="118.93253"
+       sodipodi:cy="96.79084"
+       sodipodi:rx="0.23798607"
+       sodipodi:ry="55.544506"
+       sodipodi:start="1.2421596"
+       sodipodi:end="5.2277498"
+       sodipodi:open="true"
+       sodipodi:arc-type="arc"
+       d="m 119.00934,149.36278 a 0.23798607,55.544506 0 0 1 -0.27705,-22.55613 0.23798607,55.544506 0 0 1 0.0273,-68.185968 0.23798607,55.544506 0 0 1 0.29018,-10.159947"
+       inkscape:export-filename="C:\Users\HB\Desktop\business_case_projet\public\img\favicon1.png"
+       inkscape:export-xdpi="10.89"
+       inkscape:export-ydpi="10.89" />
+  </g>
+</svg>

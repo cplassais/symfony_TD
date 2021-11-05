@@ -21,7 +21,7 @@ class SavController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()):
-            var_dump($_POST);
+
             $savFormData = $form->getData();
 
             $api_key = '55618957ac33d2032db11b0560c2baba';
@@ -41,7 +41,7 @@ class SavController extends AbstractController
                                 'Name' => "ChrisP"
                             ]
                         ],
-                        'Subject' => "Greetings from Mailjet.",
+                        'Subject' => "Envoi Fiche SAV.",
                         'TextPart' => $savFormData['Motif'],
                         'HTMLPart' => $savFormData['Message'],
                         'CustomID' => "AppGettingStartedTest"
@@ -51,7 +51,6 @@ class SavController extends AbstractController
             $response = $mj->post(Resources::$Email, ['body' => $body]);
             $response->success() && var_dump($response->getData());
             return $this->redirectToRoute('sav');
-
         endif;
 
         return $this->render('sav/index.html.twig', [

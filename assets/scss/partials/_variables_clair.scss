@@ -1,0 +1,23 @@
+$font-size-base: 1.6rem;
+$texte: "Roboto", sans-serif;
+$filterImg: 0;
+
+$primary: #fb942e;
+$secondary: #86b840;
+$success: #fcf8f3;
+$info: #e99497;
+$warning: #ffcc29;
+$danger: #ada08d;
+$light: #ffffff;
+$dark: #000000;
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark,
+);

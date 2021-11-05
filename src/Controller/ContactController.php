@@ -41,7 +41,7 @@ class ContactController extends AbstractController
                                 'Name' => "ChrisP"
                             ]
                         ],
-                        'Subject' => "Greetings from Mailjet.",
+                        'Subject' => "Envoi fiche Contact",
                         'TextPart' => "My first Mailjet email",
                         'HTMLPart' => $contactFormData['Message'],
                         'CustomID' => "AppGettingStartedTest"
