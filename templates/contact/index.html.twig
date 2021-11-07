@@ -17,17 +17,20 @@
     {# public/js/script.js #}
     <script src="{{ asset('js/script.js') }}"></script>
 </header>
-<main class="container mt-5">
-    <div class="row">
-        <div class= "d-grid justify-content-center text-center">
-            {{ form(form) }}
-        </div>
-    </div>
-</main>
+            {% form_theme form 'bootstrap_4_layout.html.twig' %}
+            {% block body %}
+                <h3>CONTACT</h3>
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+{#                <button type="submit" class="btn btn-outline-secondary">ENVOYER</button>#}
+                {{ form_end(form) }}
+            {% endblock %}
 <footer>
     <a href="{{ path('app_cgv') }}" title="CGV">CGV</a>
     <a href="{{ path('app_mention') }}" title="Mention">Mention</a>
     <a href="{{ path('app_politique') }}" title="Politique">Politique</a>
+    <a href="{{ path('app_login') }}" title="Login">Login</a>
+    <a href="{{ path('app_register') }}" title="Register">Register</a>
 </footer>
 
 <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
