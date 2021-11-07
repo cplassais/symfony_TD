@@ -16,6 +16,11 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
     {# public/js/script.js #}
     <script src="{{ asset('js/script.js') }}"></script>
+    {% if app.user %}
+        <div class=\"mb-3\">
+            Bonjour  {{ app.user.firstname }} {{ app.user.name }}, <a href="{{ path('app_logout') }}" title="LOGOUT">LOGOUT</a>
+        </div>
+    {% endif %}
 </header>
 <footer>
     <a href="{{ path('app_cgv') }}" title="CGV">CGV</a>
