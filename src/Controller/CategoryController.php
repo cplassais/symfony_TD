@@ -31,14 +31,13 @@ class CategoryController extends AbstractController
 
         $category = new Category();
 
-        $category   ->setName('Laisse')
+        $category   ->setName('Vermifuge')
                     ->setDescription('Bla bla bla bla bla bla bla bla bla bla');
         $errors = $validator->validate($category);
         if (count($errors) > 0) {
 
             $errorsString = (string) $errors;
 
-            //return new Response($errorsString);
             return $this->render('error/error.html.twig',['error' =>$errorsString]);
 
         }

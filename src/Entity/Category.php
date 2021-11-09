@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Symfony\Component\Validator\Constraints as Length;
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  */
@@ -34,6 +34,12 @@ class Category
     }
     /**
      * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 25,
+     *      minMessage = "La catégorie doit avoir au minimun {{ limit }} caracteres",
+     *      maxMessage = "La catégorie doit avoir au maximum {{ limit }} caracteres"
+     * )
      */
     public function getName(): ?string
     {
