@@ -1,0 +1,36 @@
+{#{% block body %}#}
+
+{#    <h1>Liste des produits </h1>#}
+{#    <div>#}
+{#        {% for pro in prod %}#}
+{#            <hr>#}
+{#            <br>#}
+{#            <h2>{{ pro.name }}</h2>#}
+
+{#        {% endfor %}#}
+{#        <hr>#}
+{#    </div>#}
+{#{% endblock %}#}
+{% block body %}
+    <div>
+        {% if singleFields is defined %}
+            <h1>Liste des categories extraction par champ </h1>
+            {% for ca in singleFields %}
+                <hr>
+                <br>
+                <h2>{{ ca.name }} </h2>
+            {% endfor %}
+            <hr>
+        {% endif %}
+        {% if prod is defined %}
+            <h1>Liste des categories tous les champs </h1>
+            {% for pro in prod %}
+                <hr>
+                <br>
+                <h2>{{ pro.id }}       {{ pro.name }}    {{ pro.description }}    {{ pro.price }}</h2>
+            {% endfor %}
+            <hr>
+        {% endif %}
+
+    </div>
+{% endblock %}

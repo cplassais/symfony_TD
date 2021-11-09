@@ -47,4 +47,14 @@ class CategoryRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function onlyName()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.name')
+            ->orderBy('c.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
+

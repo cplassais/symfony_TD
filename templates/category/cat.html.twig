@@ -1,0 +1,23 @@
+{% block body %}
+    <div>
+        {% if singleFields is defined %}
+            <h1>Liste des categories extraction par champ </h1>
+            {% for ca in singleFields %}
+                <hr>
+                <br>
+                <h2>{{ ca.name }} </h2>
+            {% endfor %}
+            <hr>
+        {% endif %}
+        {% if cat is defined %}
+            <h1>Liste des categories tous les champs </h1>
+            {% for ca in cat %}
+                <hr>
+                <br>
+                <h2>{{ ca.id }}     {{ ca.name }}       {{ ca.description }}</h2>
+            {% endfor %}
+            <hr>
+        {% endif %}
+
+    </div>
+{% endblock %}
