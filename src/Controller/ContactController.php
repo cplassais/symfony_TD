@@ -12,7 +12,7 @@ use \Mailjet\Resources;
 class ContactController extends AbstractController
 {
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/contact", name="app_contact")
      */
     public function index(Request $request): Response
     {

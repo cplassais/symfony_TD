@@ -12,7 +12,7 @@ use \Mailjet\Resources;
 class SavController extends AbstractController
 {
     /**
-     * @Route("/sav", name="sav")
+     * @Route("/sav", name="app_sav")
      */
     public function index(Request $request): Response
     {
