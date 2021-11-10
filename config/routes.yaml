@@ -1,6 +1,11 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+app_home:
+  path: /
+  controller: App\Controller\ContentController::display
+  defaults:
+    title: 'Home'
 app_cgv:
   path: /cgv/{title}
   controller: App\Controller\ContentController::display
