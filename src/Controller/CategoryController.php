@@ -31,7 +31,8 @@ class CategoryController extends AbstractController
         $category = new Category();
 
         $category   ->setName('Vermifuge')
-                    ->setDescription('Bla bla bla bla bla bla bla bla bla bla');
+                    ->setDescription('Catégorie pour menu navigation')
+                    ->setImage('https://picsum.photos/200/200?random=1');
         $errors = $validator->validate($category);
         if (count($errors) > 0) {
 
