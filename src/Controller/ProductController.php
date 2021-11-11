@@ -104,22 +104,33 @@ class ProductController extends AbstractController
             ->onlyName();
         return $this->render('product/cat.html.twig', ['singleFields' => $singleFields]);
     }
+
     /**
      * @Route("/product/edit/{id}", name="product_update")
      */
-    public function update(int $id): Response
-    {
+    public function update(int $id, Request $request, ValidatorInterface $validator ): Response {
         $entityManager = $this->getDoctrine()->getManager();
         $product = $entityManager->getRepository(Product::class)->find($id);
-        if(!$product){
-            return $this->render('error/error.html.twig',['error' => 'Le produit n\'existe pas'] );
+        if (!$product) {
+            return $this->render('error/error.html.twig', ['error' => 'Le produit n\'existe pas']);
         }
-        $product->setName('Nouveau nom du produit');
-        $entityManager->flush();
-        return $this->redirectToRoute('product_all', [
-            'id' => $product->getId()
-        ]);
+        $form = $this->createForm(ProductFormType::class, $product);
+        $form->handleRequest($request);
+        $errors = $validator->validate($product);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (count($errors) > 0) {
+                $errorsString = (string)$errors;
+                return $this->render('error/error.html.twig', ['error' => $errorsString]);
+            } else {
+                $entityManager->persist($product);
+                $entityManager->flush();
+                return $this->redirectToRoute('product_all');
+            }
+        }
+        return $this->render('product/addProduct.html.twig', ['productForm' => $form->createView()]);
+
     }
+
     /**
      * @Route("/product/delete/{id}", name="product_delete")
      */

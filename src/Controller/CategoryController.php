@@ -22,7 +22,6 @@ class CategoryController extends AbstractController
             'controller_name' => 'CategoryController',
         ]);
     }
-
     /**
      * @Route("/addCategory", name="add_category")
      */
@@ -44,6 +43,31 @@ class CategoryController extends AbstractController
             }
         }
         return $this->render('category/addCategory.html.twig', ['categoryForm' => $form->createView()]);
+    }
+    /**
+     * @Route("/category/edit/{id}", name="category_update")
+     */
+    public function update(int $id, Request $request, ValidatorInterface $validator ): Response {
+        $entityManager = $this->getDoctrine()->getManager();
+        $category = $entityManager->getRepository(Category::class)->find($id);
+        if (!$category) {
+            return $this->render('error/error.html.twig', ['error' => 'La catégories n\'existe pas']);
+        }
+        $form = $this->createForm(CategoryFormType::class, $category);
+        $form->handleRequest($request);
+        $errors = $validator->validate($category);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (count($errors) > 0) {
+                $errorsString = (string)$errors;
+                return $this->render('error/error.html.twig', ['error' => $errorsString]);
+            } else {
+                $entityManager->persist($category);
+                $entityManager->flush();
+                return $this->redirectToRoute('display_all');
+            }
+        }
+        return $this->render('category/addCategory.html.twig', ['categoryForm' => $form->createView()]);
+
     }
 
     /**
@@ -110,22 +134,22 @@ class CategoryController extends AbstractController
         return $this->render('category/cat.html.twig', ['singleFields' => $singleFields]);
     }
 
-    /**
-     * @Route("/category/edit/{id}", name="category_update")
-     */
-    public function update(int $id): Response
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $category = $entityManager->getRepository(Category::class)->find($id);
-        if (!$category) {
-            return $this->render('error/error.html.twig', ['error' => 'La catégories n\'existe pas']);
-        }
-        $category->setName('nom catégorie modifié');
-        $entityManager->flush();
-        return $this->redirectToRoute('display_category', [
-            'id' => $category->getId()
-        ]);
-    }
+//    /**
+//     * @Route("/category/edit/{id}", name="category_update")
+//     */
+//    public function update(int $id): Response
+//    {
+//        $entityManager = $this->getDoctrine()->getManager();
+//        $category = $entityManager->getRepository(Category::class)->find($id);
+//        if (!$category) {
+//            return $this->render('error/error.html.twig', ['error' => 'La catégories n\'existe pas']);
+//        }
+//        $category->setName('nom catégorie modifié');
+//        $entityManager->flush();
+//        return $this->redirectToRoute('display_category', [
+//            'id' => $category->getId()
+//        ]);
+//    }
 
     /**
      * @Route("/category/delete/{id}", name="category_delete")
