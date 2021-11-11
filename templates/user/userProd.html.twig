@@ -1,4 +1,4 @@
-{% extends 'base.html.twig'%}
+{% extends 'base.html.twig' %}
 {% block body %}
     <div>
         {% if singleFields is defined %}
@@ -11,7 +11,7 @@
             <hr>
         {% endif %}
         {% if prod is defined %}
-            <h3 class="text-center">ADMIN - Liste des Produits</h3>
+            <h3 class="text-center">USER - Liste des Produits</h3>
             <table class="table my-5">
                 <thead>
                 <tr>
@@ -23,14 +23,18 @@
                 </tr>
                 </thead>
                 <tbody>
-            {% for pro in prod %}
-                <tr>
-                <td>{{ pro.id }}</td><td> {{ pro.name }}</td><td> {{ pro.description }}</td><td> {{ pro.price }}</td>
-                <td><a type="button" class="btn btn-primary" href="{{ path('display_product' , { 'id':pro.id })}}" title="Details">Détails</a>
-                    <a type="button" class="btn btn-primary" href="{{ path('product_update' , { 'id':pro.id })}}" title="Update">Modifier</a>
-                    <a type="button" class="btn btn-primary" href="{{ path('product_delete' , { 'id':pro.id})}}" title="Delete">Effacer</a></td>
-                </tr>
-            {% endfor %}
+                {% for pro in prod %}
+                    <tr>
+                        <td>{{ pro.id }}</td>
+                        <td> {{ pro.name }}</td>
+                        <td> {{ pro.description }}</td>
+                        <td> {{ pro.price }}</td>
+                        <td>
+                            <a type="button" class="btn btn-primary"
+                               href="{{ path('display_product_user' , { 'id':pro.id }) }}" title="Details">Détails</a>
+                        </td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
 

@@ -63,7 +63,18 @@ class ProductController extends AbstractController
         //return new Response('le nom du produit est : ' . $product->getName());
         return $this->render('product/singleProd.html.twig', ['prod' => $product]);
     }
+    /**
+     * @Route("/user_product/{id}", name="display_product_user")
+     */
+    public function displayUserProduct($id)
+    {
 
+        $product = $this->getDoctrine()
+            ->getRepository(Product::Class)
+            ->find($id);
+        //return new Response('le nom du produit est : ' . $product->getName());
+        return $this->render('user/userSingleProd.html.twig', ['prod' => $product]);
+    }
     /**
      * @Route("/allprod", name="product_all")
      */
@@ -74,6 +85,17 @@ class ProductController extends AbstractController
             ->findAll();
         //return new Response('Liste des categories: '.$categories);
         return $this->render('product/prod.html.twig', ['prod' => $products]);
+    }
+    /**
+     * @Route("/userallprod", name="user_product_all")
+     */
+    public function userDisplayAll()
+    {
+        $products = $this->getDoctrine()
+            ->getRepository(Product::Class)
+            ->findAll();
+        //return new Response('Liste des categories: '.$categories);
+        return $this->render('user/userProd.html.twig', ['prod' => $products]);
     }
 
     /**

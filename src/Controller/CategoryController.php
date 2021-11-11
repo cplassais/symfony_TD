@@ -59,16 +59,41 @@ class CategoryController extends AbstractController
         //return new Response('Liste des categories: '.$categories);
         return $this->render('category/cat.html.twig',['cat' =>$categories]);
     }
+
+    /**
+     * @Route("/userallcat", name="user_display_category")
+     */
+    public function userDisplayAll() {
+
+        $categories = $this   ->getDoctrine()
+            ->getRepository(Category::Class)
+            ->findAll();
+        //return new Response('Liste des categories: '.$categories);
+        return $this->render('user/userCat.html.twig',['cat' =>$categories]);
+    }
     /**
      * @Route("/category/{id}", name="display_category")
      */
-    public function displayCategory($id):Response{
+    public function displayCategory($id)
+    {
 
         $category = $this   ->getDoctrine()
-                            ->getRepository(Category::Class)
-                            ->find($id);
-          //return new Response('le nom de la categorie est : '.$category->getName());
+            ->getRepository(Category::Class)
+            ->find($id);
+        //return new Response('le nom de la categorie est : '.$category->getName());
         return $this->render('category/singleCat.html.twig', ['cat' => $category]);
+    }
+    /**
+     * @Route("/user_category/{id}", name="display_category_user")
+     */
+    public function userDisplayCategory($id)
+    {
+
+        $category = $this   ->getDoctrine()
+            ->getRepository(Category::Class)
+            ->find($id);
+        //return new Response('le nom de la categorie est : '.$category->getName());
+        return $this->render('user/userSingleCat.html.twig', ['cat' => $category]);
     }
 
     /**
