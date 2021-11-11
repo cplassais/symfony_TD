@@ -54,21 +54,21 @@ class ProductController extends AbstractController
     /**
      * @Route("/product/{id}", name="display_product")
      */
-    public function displayProduct($id): Response
+    public function displayProduct($id)
     {
 
         $product = $this->getDoctrine()
             ->getRepository(Product::Class)
             ->find($id);
-        return new Response('le nom de le produit est : ' . $product->getName());
+        //return new Response('le nom du produit est : ' . $product->getName());
+        return $this->render('product/singleProd.html.twig', ['prod' => $product]);
     }
 
     /**
      * @Route("/allprod", name="product_all")
      */
-    public function displayAll(): Response
+    public function displayAll()
     {
-
         $products = $this->getDoctrine()
             ->getRepository(Product::Class)
             ->findAll();
@@ -85,6 +85,37 @@ class ProductController extends AbstractController
         $singleFields = $this->getDoctrine()
             ->getRepository(Product::Class)
             ->onlyName();
-        return $this->render('category/cat.html.twig', ['singleFields' => $singleFields]);
+        return $this->render('product/cat.html.twig', ['singleFields' => $singleFields]);
     }
+    /**
+     * @Route("/product/edit/{id}", name="product_update")
+     */
+    public function update(int $id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $product = $entityManager->getRepository(Product::class)->find($id);
+        if(!$product){
+            return $this->render('error/error.html.twig',['error' => 'Le produit n\'existe pas'] );
+        }
+        $product->setName('Nouveau nom du produit');
+        $entityManager->flush();
+        return $this->redirectToRoute('product_all', [
+            'id' => $product->getId()
+        ]);
+    }
+    /**
+     * @Route("/product/delete/{id}", name="product_delete")
+     */
+    public function delete(int $id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $product = $entityManager->getRepository(Product::class)->find($id);
+        if(!$product){
+            return $this->render('error/error.html.twig',['error' => 'Le produit n\'existe pas'] );
+        }
+        $entityManager->remove($product);
+        $entityManager->flush();
+        return $this->redirectToRoute('product_all');
+    }
+
 }

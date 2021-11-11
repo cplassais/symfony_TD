@@ -1,16 +1,4 @@
-{#{% block body %}#}
-
-{#    <h1>Liste des produits </h1>#}
-{#    <div>#}
-{#        {% for pro in prod %}#}
-{#            <hr>#}
-{#            <br>#}
-{#            <h2>{{ pro.name }}</h2>#}
-
-{#        {% endfor %}#}
-{#        <hr>#}
-{#    </div>#}
-{#{% endblock %}#}
+{% extends 'base.html.twig'%}
 {% block body %}
     <div>
         {% if singleFields is defined %}
@@ -23,13 +11,29 @@
             <hr>
         {% endif %}
         {% if prod is defined %}
-            <h1>Liste des categories tous les champs </h1>
+            <h3 class="text-center">Liste des Produits</h3>
+            <table class="table my-5">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
             {% for pro in prod %}
-                <hr>
-                <br>
-                <h2>{{ pro.id }}       {{ pro.name }}    {{ pro.description }}    {{ pro.price }}</h2>
+                <tr>
+                <td>{{ pro.id }}</td><td> {{ pro.name }}</td><td> {{ pro.description }}</td><td> {{ pro.price }}</td>
+                <td><a type="button" class="btn btn-primary" href="{{ path('display_product' , { 'id':pro.id })}}" title="Details">Détails</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('product_update' , { 'id':pro.id })}}" title="Update">Modifier</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('product_delete' , { 'id':pro.id})}}" title="Delete">Effacer</a></td>
+                </tr>
             {% endfor %}
-            <hr>
+                </tbody>
+            </table>
+
         {% endif %}
 
     </div>

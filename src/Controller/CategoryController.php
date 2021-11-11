@@ -67,7 +67,8 @@ class CategoryController extends AbstractController
         $category = $this   ->getDoctrine()
                             ->getRepository(Category::Class)
                             ->find($id);
-          return new Response('le nom de la categorie est : '.$category->getName());
+          //return new Response('le nom de la categorie est : '.$category->getName());
+        return $this->render('category/singleCat.html.twig', ['cat' => $category]);
     }
 
     /**
@@ -79,6 +80,36 @@ class CategoryController extends AbstractController
             ->getRepository(Category::Class)
             ->onlyName();
         return $this->render('category/cat.html.twig',['singleFields' =>$singleFields]);
+    }
+    /**
+     * @Route("/category/edit/{id}", name="category_update")
+     */
+    public function update(int $id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $category = $entityManager->getRepository(Category::class)->find($id);
+        if(!$category){
+            return $this->render('error/error.html.twig',['error' => 'La catégories n\'existe pas'] );
+        }
+        $category->setName('Nouveau nom de la catégorie');
+        $entityManager->flush();
+        return $this->redirectToRoute('display_category', [
+            'id' => $category->getId()
+        ]);
+    }
+    /**
+     * @Route("/category/delete/{id}", name="category_delete")
+     */
+    public function delete(int $id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $category = $entityManager->getRepository(Category::class)->find($id);
+        if(!$category){
+            return $this->render('error/error.html.twig',['error' => 'La catégorie n\'existe pas'] );
+        }
+        $entityManager->remove($category);
+        $entityManager->flush();
+        return $this->redirectToRoute('name_only');
     }
 }
 

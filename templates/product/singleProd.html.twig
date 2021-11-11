@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="d-flex justify-content-center my-5" >
+        {% if prod is defined %}
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Détails Produit</strong></h5>
+                    <p class="card-text">{{ prod.description }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Index :</strong> {{ prod.id }}</li>
+                    <li class="list-group-item"><strong>Nom : </strong>{{ prod.name }}</li>
+                    <li class="list-group-item"><strong>Prix : </strong>{{ prod.price }}</li>
+                </ul>
+                <div class="card-body">
+                    <a type="button" class="btn btn-primary" href="{{ path('product_all') }}" title="retour">Retour à la liste</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
