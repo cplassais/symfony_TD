@@ -1,4 +1,4 @@
-{% extends 'base.html.twig'%}
+{% extends 'base.html.twig' %}
 {% block body %}
     <div>
         {% if singleFields is defined %}
@@ -18,17 +18,21 @@
                     <th scope="col">ID</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Image</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for ca in cat %}
                     <tr>
-                        <td>{{ ca.id }}</td><td> {{ ca.name }}</td><td> {{ ca.description }}</td><td> {{ ca.image }}</td>
-                        <td><a type="button" class="btn btn-primary" href="{{ path('display_category' , { 'id':ca.id })}}" title="Details">Détails</a>
-                            <a type="button" class="btn btn-primary" href="{{ path('category_update' , { 'id':ca.id })}}" title="Update">Modifier</a>
-                            <a type="button" class="btn btn-primary" href="{{ path('category_delete' , { 'id':ca.id})}}" title="Delete">Effacer</a></td>
+                        <td>{{ ca.id }}</td>
+                        <td> {{ ca.name }}</td>
+                        <td> {{ ca.description }}</td>
+                        <td><a type="button" class="btn btn-primary"
+                               href="{{ path('display_category' , { 'id':ca.id }) }}" title="Details">Détails</a>
+                            <a type="button" class="btn btn-primary"
+                               href="{{ path('category_update' , { 'id':ca.id }) }}" title="Update">Modifier</a>
+                            <a type="button" class="btn btn-primary"
+                               href="{{ path('category_delete' , { 'id':ca.id}) }}" title="Delete">Effacer</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

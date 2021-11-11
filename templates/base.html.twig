@@ -36,22 +36,32 @@
         </div>
     </div>
 </header>
-<body class="container" >
+<body class="container">
 {% block body %}
 <div class="row">
     <div class="d-flex justify-content-center text-center align-items-center" style="min-height: 500px;">
-        <p>{{ description }}</p>
+        {# <p>{{ description }}</p> #}
+        <table class="table table-hover">
+            <td>
+                <a type="button" class="btn btn-outline-danger btn-lg" href="{{ path('user_display_category') }}" title="retour">Liste
+                    accès utilisateur</a>
+            </td>
+            <td>
+                <a type="button" class="btn btn-outline-danger btn-lg" href="{{ path('display_all') }}" title="retour">Liste accès
+                    Administrateur</a>
+            </td>
+        </table>
     </div>
-</div>
-        <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                crossorigin="anonymous">
-        </script>
-        {% endblock %}
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous">
+    </script>
+    {% endblock %}
 </body>
 <footer>
     <div class="d-flex justify-content-center text-center">
         <div>
+            <a href="{{ path('app_home') }}" title="Home">Home</a>
             <a href="{{ path('app_cgv') }}" title="CGV">CGV</a>
             <a href="{{ path('app_mention') }}" title="Mention">Mention</a>
             <a href="{{ path('app_politique') }}" title="Politique">Politique</a>
