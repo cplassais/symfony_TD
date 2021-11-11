@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
+use App\Entity\Product;
+use App\Form\ProductFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -25,30 +26,24 @@ class ProductController extends AbstractController
     /**
      * @Route("/addProduct", name="add_product")
      */
-    public function addProduct(ValidatorInterface $validator): Response
+    public function addProduct(Request $request, ValidatorInterface $validator): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
-
         $product = new Product();
-        $product->setName('Patée en boite 1Kg');
-        $product->setDescription('Patée diététique allégée');
-        $product->setPrice(26.55);
-        $errors = $validator->validate($product);
-
-        if (count($errors) > 0) {
-
-            $errorsString = (string)$errors;
-
-            return $this->render('error/error.html.twig', ['error' => $errorsString]);
-
-        } else {
-
-
-            $entityManager->persist($product);
-            $entityManager->flush();
-
-            return new Response('Le produit a été ajoutée ' . $product->getName());
+        $form = $this->createForm(ProductFormType::class, $product);
+        $form->handleRequest($request);
+        $errors = $validator->validate($_POST);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (count($errors) > 0) {
+                $errorsString = (string)$errors;
+                return $this->render('error/error.html.twig', ['error' => $errorsString]);
+            } else {
+                $entityManager->persist($product);
+                $entityManager->flush();
+                return $this->redirectToRoute('product_all');
+            }
         }
+        return $this->render('product/addProduct.html.twig', ['productForm' => $form->createView()]);
     }
 
     /**

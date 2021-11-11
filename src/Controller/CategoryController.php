@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Form\CategoryFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Category;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,73 +26,72 @@ class CategoryController extends AbstractController
     /**
      * @Route("/addCategory", name="add_category")
      */
-    public function addCategory(ValidatorInterface $validator): Response
+    public function addCategory(Request $request, ValidatorInterface $validator): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
-
         $category = new Category();
-
-        $category   ->setName('Vermifuge')
-                    ->setDescription('Catégorie pour menu navigation')
-                    ->setImage('https://picsum.photos/200/200?random=1');
+        $form = $this->createForm(CategoryFormType::class, $category);
+        $form->handleRequest($request);
         $errors = $validator->validate($category);
-        if (count($errors) > 0) {
-
-            $errorsString = (string) $errors;
-
-            return $this->render('error/error.html.twig',['error' =>$errorsString]);
-
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (count($errors) > 0) {
+                $errorsString = (string)$errors;
+                return $this->render('error/error.html.twig', ['error' => $errorsString]);
+            } else {
+                $entityManager->persist($category);
+                $entityManager->flush();
+                return $this->redirectToRoute('display_all');
+            }
         }
-        else {
-
-        $entityManager->persist($category);
-        $entityManager->flush();
-
-        return new Response('La catégorie a été ajoutée '.$category->getName());
-        }
+        return $this->render('category/addCategory.html.twig', ['categoryForm' => $form->createView()]);
     }
+
     /**
      * @Route("/allcat", name="display_all")
      */
-    public function displayAll() {
+    public function displayAll()
+    {
 
-        $categories = $this   ->getDoctrine()
+        $categories = $this->getDoctrine()
             ->getRepository(Category::Class)
             ->findAll();
         //return new Response('Liste des categories: '.$categories);
-        return $this->render('category/cat.html.twig',['cat' =>$categories]);
+        return $this->render('category/cat.html.twig', ['cat' => $categories]);
     }
 
     /**
      * @Route("/userallcat", name="user_display_category")
      */
-    public function userDisplayAll() {
+    public function userDisplayAll()
+    {
 
-        $categories = $this   ->getDoctrine()
+        $categories = $this->getDoctrine()
             ->getRepository(Category::Class)
             ->findAll();
         //return new Response('Liste des categories: '.$categories);
-        return $this->render('user/userCat.html.twig',['cat' =>$categories]);
+        return $this->render('user/userCat.html.twig', ['cat' => $categories]);
     }
+
     /**
      * @Route("/category/{id}", name="display_category")
      */
     public function displayCategory($id)
     {
 
-        $category = $this   ->getDoctrine()
+        $category = $this->getDoctrine()
             ->getRepository(Category::Class)
             ->find($id);
         //return new Response('le nom de la categorie est : '.$category->getName());
         return $this->render('category/singleCat.html.twig', ['cat' => $category]);
     }
+
     /**
      * @Route("/user_category/{id}", name="display_category_user")
      */
     public function userDisplayCategory($id)
     {
 
-        $category = $this   ->getDoctrine()
+        $category = $this->getDoctrine()
             ->getRepository(Category::Class)
             ->find($id);
         //return new Response('le nom de la categorie est : '.$category->getName());
@@ -100,13 +101,15 @@ class CategoryController extends AbstractController
     /**
      * @Route("/nameonly", name="name_only")
      */
-    public function displayName() {
+    public function displayName()
+    {
 
-        $singleFields = $this   ->getDoctrine()
+        $singleFields = $this->getDoctrine()
             ->getRepository(Category::Class)
             ->onlyName();
-        return $this->render('category/cat.html.twig',['singleFields' =>$singleFields]);
+        return $this->render('category/cat.html.twig', ['singleFields' => $singleFields]);
     }
+
     /**
      * @Route("/category/edit/{id}", name="category_update")
      */
@@ -114,15 +117,16 @@ class CategoryController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $category = $entityManager->getRepository(Category::class)->find($id);
-        if(!$category){
-            return $this->render('error/error.html.twig',['error' => 'La catégories n\'existe pas'] );
+        if (!$category) {
+            return $this->render('error/error.html.twig', ['error' => 'La catégories n\'existe pas']);
         }
-        $category->setName('Nouveau nom de la catégorie');
+        $category->setName('nom catégorie modifié');
         $entityManager->flush();
         return $this->redirectToRoute('display_category', [
             'id' => $category->getId()
         ]);
     }
+
     /**
      * @Route("/category/delete/{id}", name="category_delete")
      */
@@ -130,12 +134,12 @@ class CategoryController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $category = $entityManager->getRepository(Category::class)->find($id);
-        if(!$category){
-            return $this->render('error/error.html.twig',['error' => 'La catégorie n\'existe pas'] );
+        if (!$category) {
+            return $this->render('error/error.html.twig', ['error' => 'La catégorie n\'existe pas']);
         }
         $entityManager->remove($category);
         $entityManager->flush();
-        return $this->redirectToRoute('name_only');
+        return $this->redirectToRoute('display_all');
     }
 }
 

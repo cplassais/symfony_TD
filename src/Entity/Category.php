@@ -57,7 +57,13 @@ class Category
 
         return $this;
     }
-
+    /**
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "La catégorie doit avoir au maximum {{ limit }} caracteres"
+     * )
+     */
     public function getDescription(): ?string
     {
         return $this->description;
@@ -69,7 +75,9 @@ class Category
 
         return $this;
     }
-
+    /**
+     * @Assert\NotBlank
+     */
     public function getImage(): ?string
     {
         return $this->image;
