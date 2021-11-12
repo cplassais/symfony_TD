@@ -10,9 +10,12 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><strong>Index :</strong> {{ cat.id }}</li>
                     <li class="list-group-item"><strong>Nom : </strong>{{ cat.name }}</li>
+                    <li class="list-group-item"><img class="img-fluid" style="width: 200px; height: 200px" src="{{ asset('images/logo/logo_') }}{{ cat.logo }}" alt="Symfony!"/></li>
+                </ul>
+
                 </ul>
                 <div class="card-body">
-                    <a type="button" class="btn btn-primary" href="{{ path('brand_all') }}" title="retour">Retour à la liste</a>
+                    <a type="button"  class="btn btn-primary" href="{{ path('brand_all') }}" title="retour">Retour à la liste</a>
                 </div>
             </div>
         {% endif %}
