@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div>
+        {% if singleFields is defined %}
+            <h1>Liste des categories extraction par champ </h1>
+            {% for ca in singleFields %}
+                <hr>
+                <br>
+                <h2>{{ ca.name }} </h2>
+            {% endfor %}
+            <hr>
+        {% endif %}
+        {% if cat is defined %}
+            <h3 class="text-center">ADMIN - Liste des Marques</h3>
+            <table class="table my-5">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Action</th>
+                    <th><a type="button" class="btn btn-danger" href="{{ path('add_brand') }}"
+                                               title="add">Ajouter une marque</a></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ca in cat %}
+                    <tr>
+                        <td>{{ ca.id }}</td>
+                        <td> {{ ca.name }}</td>
+                        <td><a type="button" class="btn btn-primary"
+                               href="{{ path('display_brand' , { 'id':ca.id }) }}" title="Details">Détails</a>
+                            <a type="button" class="btn btn-primary"
+                               href="{{ path('brand_update' , { 'id':ca.id }) }}" title="Update">Modifier</a>
+                            <a type="button" class="btn btn-primary"
+                               href="{{ path('brand_delete' , { 'id':ca.id}) }}" title="Delete">Effacer</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        {% endif %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme brandForm 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+    <h3>FORMULAIRE AJOUT MARQUE</h3>
+    {{ form_start(brandForm) }}
+{#    {{ form_widget(brandForm) }}#}
+    {{ form_row(brandForm.name, {
+        label: 'Nom'
+    }) }}
+    <button type="submit" class="btn btn-outline-primary">Enregistrement</button>
+    {{ form_end(brandForm) }}
+{% endblock %}
+

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="d-flex justify-content-center my-5" >
+        {% if cat is defined %}
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>USER - Détails Marque</strong></h5>
+                    <p class="card-text">{{ cat.description }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Index :</strong> {{ cat.id }}</li>
+                    <li class="list-group-item"><strong>Nom : </strong>{{ cat.name }}</li>
+                </ul>
+                <div class="card-body">
+                    <a type="button" class="btn btn-primary" href="{{ path('user_display_brand') }}" title="retour">Retour à la liste</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
