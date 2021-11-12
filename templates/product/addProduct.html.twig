@@ -2,7 +2,9 @@
 
 {% form_theme productForm 'bootstrap_5_layout.html.twig' %}
 {% block body %}
-    <h3>FORMULAIRE AJOUT PRODUIT</h3>
+<div class="d-flex justify-content-center">
+    <form method="post" style="width:50%;">
+    <h3 class="text-center">FORMULAIRE AJOUT PRODUIT</h3>
     {{ form_start(productForm) }}
 {#    {{ form_widget(productForm) }}#}
     {{ form_row(productForm.name, {
@@ -16,5 +18,7 @@
     }) }}
     <button type="submit" class="btn btn-outline-primary">Enregistrement</button>
     {{ form_end(productForm) }}
+    </form>
+</div>
 {% endblock %}
 

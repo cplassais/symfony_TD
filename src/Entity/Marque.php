@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\BrandRepository;
+use App\Repository\MarqueRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=BrandRepository::class)
+ * @ORM\Entity(repositoryClass=MarqueRepository::class)
  */
-class Brand
+class Marque
 {
     /**
      * @ORM\Id
@@ -55,5 +55,4 @@ class Brand
 
         return $this;
     }
-
 }

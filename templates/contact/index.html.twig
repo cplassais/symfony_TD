@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
+
             {% form_theme form 'bootstrap_4_layout.html.twig' %}
             {% block body %}
-                <h3>CONTACT</h3>
-                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-{#                <button type="submit" class="btn btn-outline-secondary">ENVOYER</button>#}
-                {{ form_end(form) }}
+                <div class="d-flex justify-content-center">
+                    <form method="post" style="width:50%;">
+                        <h3 class="text-center">CONTACT</h3>
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        {# <button type="submit" class="btn btn-outline-secondary">ENVOYER</button> #}
+                        {{ form_end(form) }}    </form>
+                </div>
+
             {% endblock %}
 
 

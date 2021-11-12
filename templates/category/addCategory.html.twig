@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% form_theme categoryForm 'bootstrap_5_layout.html.twig' %}
+
 {% block body %}
-    <h3>FORMULAIRE AJOUT PRODUIT</h3>
+    <div class="d-flex justify-content-center">
+    <form method="post" style="width:50%;">
+    <h3 class="text-center">FORMULAIRE AJOUT CATÉGORIE</h3>
     {{ form_start(categoryForm) }}
 {#    {{ form_widget(categoryForm) }}#}
     {{ form_row(categoryForm.name, {
@@ -17,5 +20,7 @@
     }) }}
     <button type="submit" class="btn btn-outline-primary">Enregistrement</button>
     {{ form_end(categoryForm) }}
+    </form>
+</div>
 {% endblock %}
 

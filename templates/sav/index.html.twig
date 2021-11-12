@@ -2,11 +2,15 @@
 
             {% form_theme form 'bootstrap_3_layout.html.twig' %}
             {% block body %}
-                <h3>SAV</h3>
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-{#                <button type="submit" class="btn btn-outline-secondary">ENVOYER</button>#}
-                {{ form_end(form) }}
+                <div class="d-flex justify-content-center">
+                    <form method="post" style="width:50%;">
+                        <h3 class="text-center">SAV</h3>
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        {# <button type="submit" class="btn btn-outline-secondary">ENVOYER</button> #}
+                        {{ form_end(form) }}
+                    </form>
+                </div>
             {% endblock %}
 
 
