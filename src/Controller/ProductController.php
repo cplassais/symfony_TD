@@ -32,7 +32,7 @@ class ProductController extends AbstractController
         $product = new Product();
         $form = $this->createForm(ProductFormType::class, $product);
         $form->handleRequest($request);
-        $errors = $validator->validate($_POST);
+        $errors = $validator->validate($product);
         if ($form->isSubmitted() && $form->isValid()) {
             if (count($errors) > 0) {
                 $errorsString = (string)$errors;

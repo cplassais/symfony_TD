@@ -6,10 +6,10 @@
     <form method="post" style="width:50%;">
     <h3 class="text-center">FORMULAIRE AJOUT PRODUIT</h3>
     {{ form_start(productForm) }}
-{#    {{ form_widget(productForm) }}#}
     {{ form_row(productForm.name, {
         label: 'Nom'
     }) }}
+        {{ form_errors(productForm.name) }}
     {{ form_row(productForm.description, {
         label: 'Description'
     }) }}
