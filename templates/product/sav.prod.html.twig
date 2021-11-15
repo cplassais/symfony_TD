@@ -1,0 +1,42 @@
+{% extends 'base.front.html.twig'%}
+{% block body %}
+    <div>
+        {% if singleFields is defined %}
+            <h1>Liste des categories extraction par champ </h1>
+            {% for ca in singleFields %}
+                <hr>
+                <br>
+                <h2>{{ ca.name }} </h2>
+            {% endfor %}
+            <hr>
+        {% endif %}
+        {% if prod is defined %}
+            <h3 class="text-center">ADMIN - Liste des Produits</h3>
+            <table class="table my-5">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Action</th>
+                    <th><a type="button" class="btn btn-danger" href="{{ path('add_product') }}"
+                           title="add">Ajouter un produit</a></th>
+                </tr>
+                </thead>
+                <tbody>
+            {% for pro in prod %}
+                <tr>
+                <td>{{ pro.id }}</td><td> {{ pro.name }}</td><td> {{ pro.description }}</td><td> {{ pro.price | number_format(2) }} €</td>
+                <td><a type="button" class="btn btn-primary" href="{{ path('display_product' , { 'id':pro.id })}}" title="Details">Détails</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('product_update' , { 'id':pro.id })}}" title="Update">Modifier</a>
+                    <a type="button" class="btn btn-primary" href="{{ path('product_delete' , { 'id':pro.id})}}" title="Delete">Effacer</a></td>
+                </tr>
+            {% endfor %}
+                </tbody>
+            </table>
+
+        {% endif %}
+
+    </div>
+{% endblock %}
