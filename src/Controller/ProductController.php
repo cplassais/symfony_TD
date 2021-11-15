@@ -63,7 +63,6 @@ class ProductController extends AbstractController
      */
     public function displayUserProduct($id)
     {
-
         $product = $this->getDoctrine()
             ->getRepository(Product::Class)
             ->find($id);

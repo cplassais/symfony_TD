@@ -1,44 +1,62 @@
 {% extends 'base.front.html.twig' %}
-{% block body %}
-    <div>
-        {% if singleFields is defined %}
-            <h1>Liste des categories extraction par champ </h1>
-            {% for ca in singleFields %}
-                <hr>
-                <br>
-                <h2>{{ ca.name }} </h2>
-            {% endfor %}
-            <hr>
-        {% endif %}
-        {% if prod is defined %}
-            <h3 class="text-center">USER - Liste des Produits</h3>
-            <table class="table my-5">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for pro in prod %}
-                    <tr>
-                        <td>{{ pro.id }}</td>
-                        <td> {{ pro.name }}</td>
-                        <td> {{ pro.description }}</td>
-                        <td> {{ pro.price }}</td>
-                        <td>
-                            <a type="button" class="btn btn-primary"
-                               href="{{ path('display_product_user' , { 'id':pro.id }) }}" title="Details">Détails</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+            {% block products %}
+                {% if prod %}
+                    {% for pro in prod %}
 
-        {% endif %}
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Nouveau badge-->
+                                {% set pourcent = 0 %}
+                                {% if pro.new %}
+                                    <div class="badge bg-danger text-white position-absolute"
+                                         style="top: 0.5rem; right: 0.5rem">
+                                        Promotion
+                                    </div>
+                                    {% set pourcent = 0.2 %}
+                                {% endif %}
+                                <!-- Product image-->
+                                <img class="card-img-top img-fluid" style="width: auto; height: 150px;"
+                                     src="{{ asset('images/logo/logo_') }}{{ pro.brand.logo }}" alt="Symfony!"/>
+                                <div class="card-body p-4">
+                                    {% if pro.category.count > 0 %}
+                                        <div class="text-center"><strong>Catégorie :</strong></div>
+                                        <div class="text-center">{% for cat in pro.category %}
+                                                {{ cat.name }}
+                                            {% endfor %}</div>
+                                    {% endif %}
+                                    <div class="text-center">
+                                        {% if pro.description %}
+                                           <strong> Description : </strong><br>
+                                        {{ pro.description }}
+                                        {% endif %}
+                                        <br>
+                                        {{ pro.name | upper }}
+                                        <h5 class="fw-bolder">{{ pro.brand.name }}</h5>
+                                        <!-- Product reviews-->
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            {% if pro.note > 0 %}
+                                                {% for i in 1..pro.note %}
+                                                    <div class="bi-star-fill"></div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                        <!-- Product price-->
+                                        {% if pro.new %}
+                                            <span class="text-muted text-decoration-line-through">{{ pro.price }}</span>
+                                        {% endif %}
+                                        {{ pro.price - (pro.price * pourcent) | number_format(2) }} €
+                                        <br>
+                                        {{ pro.date | date("d/m/Y - H:i") }}
+                                    </div>
 
-    </div>
-{% endblock %}
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to
+                                            cart</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endblock %}
