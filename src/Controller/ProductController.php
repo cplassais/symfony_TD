@@ -26,7 +26,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/addProduct", name="add_product")
      */
-    public function addProduct(Request $request, ValidatorInterface $validator): Response
+    public function addProduct(Request $request, ValidatorInterface $validator)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $product = new Product();
