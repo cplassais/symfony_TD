@@ -21,10 +21,10 @@
     {{ form_row(productForm.brand, {
         label: 'Marque'
     }) }}
-    {{ form_row(productForm.category, {
-        label: 'Catégories'
-    }) }}
-
+        {% for cat in productForm.category %}
+            {{ form_label(cat) }}
+            {{ form_widget(cat) }}
+        {% endfor %}
     <button type="submit" class="btn btn-outline-primary">Enregistrement</button>
     {{ form_end(productForm) }}
     </form>
