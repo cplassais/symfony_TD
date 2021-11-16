@@ -15,6 +15,16 @@
     {{ form_row(productForm.price, {
         label: 'Prix'
     }) }}
+    {{ form_row(productForm.new, {
+        label: 'Promotion'
+    }) }}
+    {{ form_row(productForm.brand, {
+        label: 'Marque'
+    }) }}
+    {{ form_row(productForm.category, {
+        label: 'Catégories'
+    }) }}
+
     <button type="submit" class="btn btn-outline-primary">Enregistrement</button>
     {{ form_end(productForm) }}
     </form>
