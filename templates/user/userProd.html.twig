@@ -1,6 +1,9 @@
 {% extends 'base.front.html.twig' %}
             {% block products %}
                 {% if prod %}
+                    <pre>
+                        {{ dump(prod) }}
+                    </pre>
                     {% for pro in prod %}
 
                         <div class="col mb-5">
@@ -21,24 +24,32 @@
                                     {% if pro.category.count > 0 %}
                                         <div class="text-center"><strong>Catégorie :</strong></div>
                                         <div class="text-center">{% for cat in pro.category %}
-                                                {{ cat.name }}
+                                                {{ cat.name | lower }}
                                             {% endfor %}</div>
                                     {% endif %}
                                     <div class="text-center">
                                         {% if pro.description %}
-                                           <strong> Description : </strong><br>
-                                        {{ pro.description }}
+                                            <strong> Description : </strong><br>
+                                            {{ pro.description }}
                                         {% endif %}
                                         <br>
                                         {{ pro.name | upper }}
                                         <h5 class="fw-bolder">{{ pro.brand.name }}</h5>
                                         <!-- Product reviews-->
                                         <div class="d-flex justify-content-center small text-warning mb-2">
-                                            {% if pro.note > 0 %}
-                                                {% for i in 1..pro.note %}
+                                            {% if pro.note| round(0,'floor') > 0 %}
+                                                {% for i in 1..((pro.note|round(0,'floor'))) %}
                                                     <div class="bi-star-fill"></div>
                                                 {% endfor %}
                                             {% endif %}
+                                            {% if ((pro.note|round) - pro.note == 0.5) %}
+                                                <div class="bi-star-half"></div>
+                                            {% endif %}
+                                            {% for j in 1..5 %}
+                                                {% if j + (pro.note|round(0,'ceil')) <= 5  %}
+                                                    <div class="bi-star"></div>
+                                                {% endif %}
+                                            {% endfor %}
                                         </div>
                                         <!-- Product price-->
                                         {% if pro.new %}
