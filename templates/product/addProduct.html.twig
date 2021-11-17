@@ -2,32 +2,35 @@
 
 {% form_theme productForm 'bootstrap_5_layout.html.twig' %}
 {% block body %}
-<div class="d-flex justify-content-center">
-    <form method="post" style="width:50%;">
-    <h3 class="text-center">FORMULAIRE AJOUT PRODUIT</h3>
-    {{ form_start(productForm) }}
-    {{ form_row(productForm.name, {
-        label: 'Nom'
-    }) }}
-    {{ form_row(productForm.description, {
-        label: 'Description'
-    }) }}
-    {{ form_row(productForm.price, {
-        label: 'Prix'
-    }) }}
-    {{ form_row(productForm.new, {
-        label: 'Promotion'
-    }) }}
-    {{ form_row(productForm.brand, {
-        label: 'Marque'
-    }) }}
-        {% for cat in productForm.category %}
-            {{ form_label(cat) }}
-            {{ form_widget(cat) }}
-        {% endfor %}
-    <button type="submit" class="btn btn-outline-primary">Enregistrement</button>
-    {{ form_end(productForm) }}
-    </form>
-</div>
+    <div class="d-flex justify-content-center">
+        <div style="width:50%;">
+            <h3 class="text-center">FORMULAIRE AJOUT PRODUIT</h3>
+            {{ form_start(productForm) }}
+            {{ form_row(productForm.name, {
+                label: 'Nom'
+            }) }}
+            {{ form_row(productForm.description, {
+                label: 'Description'
+            }) }}
+            {{ form_row(productForm.price, {
+                label: 'Prix'
+            }) }}
+            {{ form_row(productForm.new, {
+                label: 'Promotion'
+            }) }}
+            {{ form_row(productForm.brand, {
+                label: 'Marque'
+            }) }}
+            {% for cat in productForm.category %}
+                {{ form_label(cat) }}
+                {{ form_widget(cat) }}
+            {% endfor %}
+            {{ form_row(productForm.img, {
+                label: 'Image fichier'
+            }) }}
+            <button type="submit" class="btn btn-outline-primary">Enregistrement</button>
+            {{ form_end(productForm) }}
+        </div>
+    </div>
 {% endblock %}
 

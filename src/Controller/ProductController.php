@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\ProductFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ProductController extends AbstractController
 {
@@ -28,7 +30,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/addProduct", name="add_product")
      */
-    public function addProduct(Request $request, ValidatorInterface $validator)
+    public function addProduct(Request $request, ValidatorInterface $validator, SluggerInterface $slugger)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $product = new Product();
@@ -36,6 +38,20 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
         $errors = $validator->validate($product);
         if ($form->isSubmitted() && $form->isValid()) {
+            $imgFile = $form->get('img')->getData();
+            if ($imgFile) {
+                $originalFilename = pathinfo($imgFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imgFile->guessExtension();
+                try {
+                    $imgFile->move(
+                        $this->getParameter('img_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+                $product->setImage($newFilename);
+            }
             if (count($errors) > 0) {
                 $errorsString = (string)$errors;
                 return $this->render('error/error.html.twig', ['error' => $errorsString]);
@@ -110,7 +126,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/product/edit/{id}", name="product_update")
      */
-    public function update(int $id, Request $request, ValidatorInterface $validator ): Response {
+    public function update(int $id, Request $request, ValidatorInterface $validator, SluggerInterface $slugger ): Response {
         $entityManager = $this->getDoctrine()->getManager();
         $product = $entityManager->getRepository(Product::class)->find($id);
         if (!$product) {
@@ -120,6 +136,20 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
         $errors = $validator->validate($product);
         if ($form->isSubmitted() && $form->isValid()) {
+            $imgFile = $form->get('img')->getData();
+            if ($imgFile) {
+                $originalFilename = pathinfo($imgFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imgFile->guessExtension();
+                try {
+                    $imgFile->move(
+                        $this->getParameter('img_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+                $product->setImage($newFilename);
+            }
             if (count($errors) > 0) {
                 $errorsString = (string)$errors;
                 return $this->render('error/error.html.twig', ['error' => $errorsString]);
