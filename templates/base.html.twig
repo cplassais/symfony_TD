@@ -46,31 +46,31 @@
                 <td>
                     <a type="button" class="btn btn-outline-danger btn-lg" href="{{ path('user_display_category') }}"
                        title="retour">Liste catégories accès utilisateur</a>
-                </td>
+                </td>{% if is_granted('ROLE_ADMIN') %}
                 <td>
                     <a type="button" class="btn btn-outline-danger btn-lg" href="{{ path('display_all') }}"
                        title="retour">Liste catégories accès administrateur</a>
-                </td>
+                </td> {% endif %}
             </tr>
             <tr>
                 <td>
                     <a type="button" class="btn btn-outline-danger btn-lg" href="{{ path('user_product_all') }}"
                        title="retour">Liste produits accès utilisateur</a>
                 </td>
-                <td>
+                    <td>
                     <a type="button" class="btn btn-outline-danger btn-lg" href="{{ path('product_all') }}"
                        title="retour">Liste produits accès administrateur</a>
-                </td>
+                    </td>
             </tr>
             <tr>
                 <td>
                     <a type="button" class="btn btn-outline-danger btn-lg" href="{{ path('user_display_brand') }}"
                        title="retour">Liste marques accès utilisateur</a>
-                </td>
+                </td>{% if is_granted('ROLE_ADMIN') %}
                 <td>
                     <a type="button" class="btn btn-outline-danger btn-lg" href="{{ path('brand_all') }}"
                        title="retour">Liste marques accès administrateur</a>
-                </td>
+                </td>{% endif %}
             </tr>
 
 

@@ -4,8 +4,12 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use \Mailjet\Resources;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Routing\Annotation\Route;
 
 class ContentController extends AbstractController {
+
     public function display(string $title): Response {
 //        $api_key='55618957ac33d2032db11b0560c2baba';
 //        $api_key_private='8b78bca18a537d19d04131be64b2c309';

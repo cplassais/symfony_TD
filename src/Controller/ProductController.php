@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ProductController extends AbstractController
 {
@@ -70,6 +72,7 @@ class ProductController extends AbstractController
         return $this->render('user/userSingleProd.html.twig', ['prod' => $product]);
     }
     /**
+     * @IsGranted("ROLE_ADMIN", message="Pas d'accès ! Retour!")
      * @Route("/allprod", name="product_all")
      */
     public function displayAll()
