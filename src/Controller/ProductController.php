@@ -76,6 +76,7 @@ class ProductController extends AbstractController
         //return new Response('le nom du produit est : ' . $product->getName());
         return $this->render('product/singleProd.html.twig', ['prod' => $product]);
     }
+
     /**
      * @Route("/user_product/{id}", name="display_product_user")
      */
@@ -87,6 +88,7 @@ class ProductController extends AbstractController
         //return new Response('le nom du produit est : ' . $product->getName());
         return $this->render('user/userSingleProd.html.twig', ['prod' => $product]);
     }
+
     /**
      * @IsGranted("ROLE_ADMIN", message="Pas d'accès ! Retour!")
      * @Route("/allprod", name="product_all")
@@ -99,6 +101,7 @@ class ProductController extends AbstractController
         //return new Response('Liste des categories: '.$categories);
         return $this->render('product/prod.html.twig', ['prod' => $products]);
     }
+
     /**
      * @Route("/userallprod", name="user_product_all")
      */
@@ -126,12 +129,14 @@ class ProductController extends AbstractController
     /**
      * @Route("/product/edit/{id}", name="product_update")
      */
-    public function update(int $id, Request $request, ValidatorInterface $validator, SluggerInterface $slugger ): Response {
+    public function update(int $id, Request $request, ValidatorInterface $validator, SluggerInterface $slugger): Response
+    {
         $entityManager = $this->getDoctrine()->getManager();
         $product = $entityManager->getRepository(Product::class)->find($id);
         if (!$product) {
             return $this->render('error/error.html.twig', ['error' => 'Le produit n\'existe pas']);
         }
+        $imgOri = $product->getImage();
         $form = $this->createForm(ProductFormType::class, $product);
         $form->handleRequest($request);
         $errors = $validator->validate($product);
@@ -148,7 +153,10 @@ class ProductController extends AbstractController
                     );
                 } catch (FileException $e) {
                 }
+                unlink('../public/images/upload/' . $imgOri);
                 $product->setImage($newFilename);
+            } else {
+                $product->setImage($imgOri);
             }
             if (count($errors) > 0) {
                 $errorsString = (string)$errors;
@@ -170,9 +178,11 @@ class ProductController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $product = $entityManager->getRepository(Product::class)->find($id);
-        if(!$product){
-            return $this->render('error/error.html.twig',['error' => 'Le produit n\'existe pas'] );
+        if (!$product) {
+            return $this->render('error/error.html.twig', ['error' => 'Le produit n\'existe pas']);
         }
+        $old = $product->getImage();
+        unlink('../public/images/upload/' . $old);
         $entityManager->remove($product);
         $entityManager->flush();
         return $this->redirectToRoute('product_all');
