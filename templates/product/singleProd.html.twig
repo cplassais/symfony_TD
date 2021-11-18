@@ -9,6 +9,8 @@
                     <p class="card-text">{{ prod.description }}</p>
                 </div>
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><img class="card-img-top img-fluid" style="width: auto; height: 150px;"
+                         src="{{ asset('images/upload/') }}{{ prod.image }}" alt="Symfony!"/></li>
                     <li class="list-group-item"><strong>Index :</strong> {{ prod.id }}</li>
                     <li class="list-group-item"><strong>Nom : </strong>{{ prod.name }}</li>
                     <li class="list-group-item"><strong>Prix : </strong>{{ prod.price }}</li>
