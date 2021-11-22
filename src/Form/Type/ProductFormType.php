@@ -28,7 +28,7 @@ class ProductFormType extends AbstractType
                 'required' => true
             ])
             ->add('category', EntityType::class, [
-                'class' => Category::class,
+                'class' => Categories::class,
                 'multiple' => true,
                 'choice_label' => 'name',
                 'expanded' => true,
